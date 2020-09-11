@@ -11,7 +11,7 @@ library(BaBA)
 # load previous results
 data <- read.csv("./data/I2_PRON_FB110_B4_P36_FinalCls.csv")
 data$date <- ymd_hm (data$burstID, tz = "US/Mountain") 
-
+ #ttt
 
 # total encounter monthly trend
 data1 <- data %>% mutate(month = month(date)) %>% 
