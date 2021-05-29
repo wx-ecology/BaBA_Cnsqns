@@ -1,6 +1,5 @@
 #baba around 2 with all animals
 setwd("/Users/Mushy 1/Google Drive (wenjing.xu@berkeley.edu)/RESEARCH/Pronghorn/BaBA_Season2")
-target.crs <- "+proj=utm +zone=12 +datum=WGS84 +units=m +no_defs +ellps=WGS84 +towgs84=0,0,0"
 target.crs <- "+init=epsg:32612"
 
 library(tidyverse)
