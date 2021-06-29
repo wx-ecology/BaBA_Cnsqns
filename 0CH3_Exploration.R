@@ -42,9 +42,22 @@ pronghorn.summary %>% arrange(center) %>% mutate(Location.ID=factor(Location.ID,
   xlab("ID") +
   ylab("Date")
 
-write_csv(pronghorn.summary, "./data/Animal_Info_All.csv")
 write_csv(pronghorn, "./data/Animal_Location_All.csv")
 
+##################################################
+############### organize animal info #############
+##################################################
+jmh_info <- read_csv("./data/01CleanedMovement/FINAL_JMHanimalTableWX.csv") %>% 
+  select(Location.ID,Capture.Area,Death.Date,Comments) %>% 
+  mutate(Location.ID = paste0("JMH_", Location.ID))
+papo_info <- read_csv("./data/01CleanedMovement/FINAL_PAPOanimalTableWX.csv") %>% 
+  select(Location.ID,Capture.Area,Death.Date,Comments) %>% 
+  mutate(Location.ID = paste0("PAPO_", Location.ID))
+
+pronghorn_info <- rbind(jmh_info, papo_info)
+pronghorn.summary <- pronghorn.summary %>% left_join(pronghorn_info, by = "Location.ID")
+
+write_csv(pronghorn.summary %>% select(-center), "./data/Animal_Info_All.csv")
 
 ##################################################
 ############### previous baba result #############
